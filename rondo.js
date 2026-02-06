@@ -274,8 +274,7 @@ function siteConfig (siteJsonData) {
   if (!openPage) { document.title = header; $('figure.hero').show(); }
   $('#head').text(header);
   $('#subhead').text(subhead);
-  if (headerImage) { $('hgroup').prepend('<img class="header-image" src="'+headerImage+'">'); $('#head').hide(); }
-
+  if (headerImage) { $('hgroup').prepend('<img class="header-image" src="'+headerImage+'" alt="'+header+' logo">'); $('#head').hide(); }
   $('hgroup *').on('click', function () {
     if (spreadsheetID == originalID) window.location = window.location.href.split("?")[0];
     else { window.location = window.location.href.split("?")[0]+'?source='+overrideSource; homeOpen(); }
@@ -509,7 +508,7 @@ function itemsDataTable(itemsJsonData) {
         itemsTable.search('').searchBuilder.rebuild().draw();
         $('.items-head').text('All Items');
       });
-
+      
       //figure
         $('#pages-container figure.include-item').each(function( i ) {
         var thisFigure = $(this);
@@ -554,7 +553,7 @@ function itemsDataTable(itemsJsonData) {
           }
         });
       $filter.append($toggle);
-
+      $filter.find('input[type="search"]').attr('aria-label', 'Search items');
       /* COMMENTED: force-show of items section (list section)
       $('#pages-container, #collection').show();
       */
