@@ -1,3 +1,4 @@
+
 body {
   padding-top:100px;
   /* background-color: #F5E1C8; */
@@ -218,22 +219,193 @@ button.next-page {
   box-shadow: 0 4px 12px rgba(0,0,0,.08);
 }
 
-/* Dark mode harmony */
-@media (prefers-color-scheme: dark){
-  #pages-container article{
-    background: var(--card, #302419);
-    border-color: var(--border, #473622);
-  }
-  #pages-container article > header,
-  #pages-container article > footer{
-    background: color-mix(in oklab, var(--card, #302419) 80%, #000);
-    border-color: var(--border, #473622);
-  }
-  #pages-container article > :not(header):not(footer){
-    background: #1f1812;
-    color: var(--text, #F5EDE3);
-  }
-}
+
 dialog { z-index: 2001; }              /* keep dialog above the fixed header */
 dialog::backdrop { background: rgba(0,0,0,.35); }
 
+/* updates */
+
+
+/* Force light background regardless of OS dark mode */
+html, body {
+  background-color: #ffffff !important;
+  color-scheme: light !important;
+}
+
+/* Fix Pico dark article cards */
+#pages-container article,
+#collection > article {
+  background: #ffffff !important;
+  color: #3a2e22 !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+/* Fix dark header/footer strips inside articles */
+#pages-container article > header,
+#pages-container article > footer,
+#collection > article > header {
+  background: #ffffff !important;
+  color: #3a2e22 !important;
+  border-color: #ffffff !important;
+}
+
+/* Fix heading text inside article headers (Items, page titles) */
+#pages-container article > header h2,
+#collection > article > header h2,
+#collection > article > header .items-head {
+  color: #3a2e22 !important;
+  opacity: 1 !important;
+}
+
+/* Fix dark body area inside articles */
+#pages-container article > *:not(header):not(footer) {
+  background: #ffffff !important;
+  color: #3a2e22 !important;
+}
+
+/* Fix ALL text inside page content (including faded nested list items) */
+#pages-container article p,
+#pages-container article li,
+#pages-container article ul,
+#pages-container article ol,
+#pages-container article h1,
+#pages-container article h2,
+#pages-container article h3,
+#pages-container article h4,
+#pages-container article h5,
+#pages-container article h6 {
+  color: #3a2e22 !important;
+  opacity: 1 !important;
+}
+
+/* Fix items grid background */
+#items tbody,
+#items td,
+.dataTables_info,
+.dataTables_paginate,
+.dataTables_paginate span {
+  background: #ffffff !important;
+  color: #3a2e22 !important;
+}
+
+/* Fix ALL dark inputs, textareas, selects site-wide */
+input,
+textarea,
+select,
+input[type="search"],
+input[type="text"] {
+  background-color: #ffffff !important;
+  color: #3a2e22 !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 8px !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #ffffff !important;
+}
+
+.dataTables_filter label {
+  color: #3a2e22 !important;
+}
+
+/* === Navbar dropdown fix === */
+
+/* Hide the flat ul#pages — it should only show inside the dropdown */
+header.top-header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+header.top-header nav > ul > li {
+  position: relative;
+}
+
+/* Style the summary as a proper Menu button */
+header.top-header nav details summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #3a2e22;
+  background: #fff;
+  list-style: none;
+  white-space: nowrap;
+}
+header.top-header nav details summary::-webkit-details-marker { display: none; }
+header.top-header nav details summary::after {
+  content: " ";
+  font-size: 0.75em;
+}
+header.top-header nav details[open] summary::after {
+  content: " ";
+}
+
+/* Dropdown panel */
+header.top-header nav details[open] > ul#pages {
+  display: block !important;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 0.4rem 0;
+  z-index: 1200;
+  list-style: none;
+  margin: 0;
+}
+
+/* Hide the ul when details is closed */
+header.top-header nav details:not([open]) > ul#pages {
+  display: none !important;
+}
+
+/* Dropdown items */
+ul#pages li {
+  display: block !important;
+  padding: 0;
+}
+
+ul#pages li a {
+  display: block;
+  padding: 0.55rem 1.2rem;
+  color: #3a2e22 !important;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background 0.15s;
+}
+
+ul#pages li a:hover {
+  background: #ffffff;
+  color: #C8692A !important;
+}
+
+/* Subpage indent */
+ul#pages ul.subpage-menu {
+  display: block !important;
+  padding-left: 1rem;
+}
+
+ul#pages ul.subpage-menu li a {
+  font-size: 0.88rem;
+  color: #7a6a58 !important;
+  padding: 0.4rem 1.2rem;
+}
+
+/* Fix footer text color */
+footer small, footer {
+  color: #3a2e22 !important;
+  opacity: 1 !important;
+}
